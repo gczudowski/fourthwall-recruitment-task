@@ -12,7 +12,7 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      prettierConfig, // Disable ESLint rules that conflict with Prettier
+      prettierConfig,
     ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -22,7 +22,7 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      prettier, // Add Prettier as a plugin
+      prettier,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -30,7 +30,7 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      'prettier/prettier': 'error', // Treat Prettier formatting issues as ESLint errors
+      'prettier/prettier': 'error',
     },
   }
 )
