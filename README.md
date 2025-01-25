@@ -14,3 +14,5 @@ After starting the local server, go to http://localhost:5173/ or type `o + enter
 # Technical decisions
 
 1. Implemented eslint, prettier, typescript to ensure coherent code formatting and type safety
+2. Implemented husky pre-commit hook to ensure code check is executed by every developer before committing changes
+3. Implemented NVM to ensure all developers use the same version of NodeJS
