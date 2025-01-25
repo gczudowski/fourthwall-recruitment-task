@@ -4,13 +4,13 @@ import SearchResultsTable from './components/GithubRepositorySearchResultsTable'
 import useGitubRepositorySearch from './hooks/useGithubRepositorySearch'
 
 const SearchPage = () => {
-  const { setSearchQuery, searchResults } = useGitubRepositorySearch()
+  const { setSearchQuery, page, setPage, maxPages } = useGitubRepositorySearch()
 
   return (
     <>
       <Input onInputChange={setSearchQuery} />
-      <SearchResultsTable searchResults={searchResults} />
-      <TablePaginaton />
+      <SearchResultsTable />
+      <TablePaginaton page={page} setPage={setPage} maxPages={maxPages} />
     </>
   )
 }

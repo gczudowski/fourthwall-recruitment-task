@@ -1,13 +1,9 @@
-import {
-  GithubRepositoryItem,
-  GithubRepositorySearchResponse,
-} from '../../../types/githubRepository.type'
+import { GithubRepositoryItem } from '../../../types/githubRepository.type'
+import useGitubRepositorySearch from '../hooks/useGithubRepositorySearch'
 
-interface Props {
-  searchResults: GithubRepositorySearchResponse
-}
+const SearchResultsTable = () => {
+  const { searchResults } = useGitubRepositorySearch()
 
-const SearchResultsTable = ({ searchResults }: Props) => {
   return (
     <table>
       <thead>

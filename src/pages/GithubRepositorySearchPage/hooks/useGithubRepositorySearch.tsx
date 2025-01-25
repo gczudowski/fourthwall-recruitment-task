@@ -1,13 +1,24 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { GithubRepositorySearchResponse } from '../../../types/githubRepository.type'
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
+import { useQuery } from '@tanstack/react-query'
 
 const PER_PAGE = 20
 
-function useGitubRepositorySearch() {
-  const [searchResults, setSearchResults] = useState(
-    {} as GithubRepositorySearchResponse
+const fetchRepositories = async (
+  query: string,
+  page: number
+): Promise<GithubRepositorySearchResponse> => {
+  const response = await fetch(
+    `https://api.github.com/search/repositories?q=${query}&page=${page}&per_page=${PER_PAGE}`
   )
+  if (!response.ok) {
+    throw new Error('Failed to fetch repositories')
+  }
+  return response.json()
+}
+
+function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
 
@@ -19,36 +30,31 @@ function useGitubRepositorySearch() {
     [setQuery, setPage]
   )
 
-  const fetchRepositories = useCallback(
-    async (query: string, page: number) => {
-      if (!query) return
-
-      const response = await fetch(
-        `https://api.github.com/search/repositories?q=${query}&page=${page}&per_page=${PER_PAGE}`
-      )
-
-      const json = await response.json()
-
-      if (json?.items?.length) {
-        setSearchResults(json)
-        setMaxPages(Math.ceil(json.total_count / 20))
-      }
-    },
-    [setSearchResults, setMaxPages]
-  )
+  const {
+    data: searchResults,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['repositories', query, page],
+    queryFn: () => fetchRepositories(query, page),
+    enabled: !!query,
+  })
 
   useEffect(() => {
-    fetchRepositories(query, page)
-  }, [fetchRepositories, query, page])
+    if (searchResults?.total_count) {
+      setMaxPages(Math.ceil(searchResults?.total_count / 20))
+    }
+  }, [searchResults, setMaxPages])
 
   return {
     query,
     setSearchQuery,
-    searchResults,
-    setSearchResults,
     page,
     setPage,
     maxPages,
+    searchResults,
+    isLoading,
+    isError,
   }
 }
 
