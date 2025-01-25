@@ -9,6 +9,7 @@
     "lint-check": "eslint .",
     "type-check": "tsc --noEmit -p tsconfig.app.json",
     "format-check": "prettier --check .",
+    "code-check": "npm run lint-check && npm run type-check && npm run format-check",
     "preview": "vite preview",
     "prepare": "husky"
   },
