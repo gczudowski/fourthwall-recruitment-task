@@ -1,9 +1,12 @@
-import useGitubRepositorySearch from '../../../pages/GithubRepositorySearchPage/hooks/useGithubRepositorySearch'
 import Button from '../../ui/button/Button'
 
-const TablePaginaton = () => {
-  const { page, setPage, maxPages } = useGitubRepositorySearch()
+interface Props {
+  page: number
+  maxPages: number
+  setPage: React.Dispatch<React.SetStateAction<number>>
+}
 
+const TablePaginaton = ({ page, setPage, maxPages }: Props) => {
   return (
     <>
       <Button
