@@ -19,3 +19,5 @@ After starting the local server, go to http://localhost:5173/ or type `o + enter
 4. Implemented Tanstack Query to start handling requests caching. It'll also be used to handle loading and errors
 5. Implemented React Context as a global state solution to avoid props drilling
 6. Implemented Styled Components to handle styles.
+7. Implemented Table component with placeholders to gracefully handle pagination.
+8.
