@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { StyledInput } from './Input.styled'
 
 interface Props {
   onInputChange: (query: string) => void
@@ -23,7 +24,9 @@ const Input = ({ onInputChange }: Props) => {
     return () => clearTimeout(debounceTimeout.current)
   }, [onInputChange, inputValue])
 
-  return <input type="text" value={inputValue} onChange={handleInputChange} />
+  return (
+    <StyledInput type="text" value={inputValue} onChange={handleInputChange} />
+  )
 }
 
 export default Input

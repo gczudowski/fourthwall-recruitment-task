@@ -1,3 +1,10 @@
+import {
+  Table,
+  TableCell,
+  TableRow,
+  TableHeader,
+  TableHead,
+} from '../../../components/ui/table/Table'
 import { GithubRepositoryItem } from '../../../types/githubRepository.type'
 import useGitubRepositorySearch from '../hooks/useGithubRepositorySearch'
 
@@ -5,26 +12,28 @@ const SearchResultsTable = () => {
   const { searchResults } = useGitubRepositorySearch()
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Owner</th>
-          <th>Stars</th>
-          <th>Created At</th>
-        </tr>
-      </thead>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableHeader>Name</TableHeader>
+          <TableHeader>Owner</TableHeader>
+          <TableHeader>Stars</TableHeader>
+          <TableHeader>Created At</TableHeader>
+        </TableRow>
+      </TableHead>
       <tbody>
         {searchResults?.items?.map((repoItem: GithubRepositoryItem) => (
-          <tr key={repoItem.id}>
-            <td>{repoItem.name}</td>
-            <td>{repoItem.owner.login}</td>
-            <td>{repoItem.stargazers_count}</td>
-            <td>{new Date(repoItem.created_at).toLocaleDateString()}</td>
-          </tr>
+          <TableRow key={repoItem.id}>
+            <TableCell>{repoItem.name}</TableCell>
+            <TableCell>{repoItem.owner.login}</TableCell>
+            <TableCell>{repoItem.stargazers_count}</TableCell>
+            <TableCell>
+              {new Date(repoItem.created_at).toLocaleDateString()}
+            </TableCell>
+          </TableRow>
         ))}
       </tbody>
-    </table>
+    </Table>
   )
 }
 

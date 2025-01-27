@@ -1,3 +1,5 @@
+import { StyledButton } from './Button.styled'
+
 interface Props {
   onClick?: () => void
   text: string
@@ -6,9 +8,9 @@ interface Props {
 
 const Button = ({ text, onClick, disabled }: Props) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <StyledButton onClick={onClick} disabled={disabled}>
       {text}
-    </button>
+    </StyledButton>
   )
 }
 

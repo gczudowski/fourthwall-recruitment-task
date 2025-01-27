@@ -17,3 +17,5 @@ After starting the local server, go to http://localhost:5173/ or type `o + enter
 2. Implemented husky pre-commit hook to ensure code check is executed by every developer before committing changes
 3. Implemented NVM to ensure all developers use the same version of NodeJS
 4. Implemented Tanstack Query to start handling requests caching. It'll also be used to handle loading and errors
+5. Implemented React Context as a global state solution to avoid props drilling
+6. Implemented Styled Components to handle styles.
