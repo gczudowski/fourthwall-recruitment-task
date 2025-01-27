@@ -33,11 +33,13 @@ function useGitubRepositorySearch() {
   const {
     data: searchResults,
     isLoading,
+    isFetching,
     isError,
   } = useQuery({
     queryKey: ['repositories', query, page],
     queryFn: () => fetchRepositories(query, page),
     enabled: !!query,
+    placeholderData: (prev) => prev,
   })
 
   useEffect(() => {
@@ -54,6 +56,7 @@ function useGitubRepositorySearch() {
     maxPages,
     searchResults,
     isLoading,
+    isFetching,
     isError,
   }
 }
