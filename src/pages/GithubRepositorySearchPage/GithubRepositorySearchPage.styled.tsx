@@ -8,6 +8,7 @@ export const PageWrapper = styled.div`
   align-items: center;
   padding: 24px 16px;
 `
+
 export const SearchInputWrapper = styled.div`
   width: 400px;
 `

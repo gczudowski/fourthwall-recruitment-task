@@ -26,7 +26,6 @@ function useGitubRepositorySearch() {
     (query: string) => {
       setQuery(query)
       setPage(1)
-      setMaxPages(0)
     },
     [setQuery, setPage]
   )

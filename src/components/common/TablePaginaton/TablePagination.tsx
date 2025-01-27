@@ -1,20 +1,11 @@
-import styled from 'styled-components'
 import Button from '../../ui/button/Button'
+import { CurrentPage, PaginationWrapper } from './TablePagination.styled'
 
 interface Props {
   page: number
   maxPages: number
   setPage: React.Dispatch<React.SetStateAction<number>>
 }
-
-const CurrentPage = styled.span`
-  padding: 10px;
-`
-
-const PaginationWrapper = styled.div`
-  display: flex;
-  height: 40px;
-`
 
 const TablePaginaton = ({ page, setPage, maxPages }: Props) => {
   return (
