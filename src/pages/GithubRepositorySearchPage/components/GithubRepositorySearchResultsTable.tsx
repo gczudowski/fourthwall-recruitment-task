@@ -9,7 +9,7 @@ import { GithubRepositoryItem } from '../../../types/githubRepository.type'
 import useGitubRepositorySearch from '../hooks/useGithubRepositorySearch'
 
 const SearchResultsTable = () => {
-  const { searchResults } = useGitubRepositorySearch()
+  const { searchResults, isFetching } = useGitubRepositorySearch()
 
   return (
     <Table>
@@ -24,10 +24,14 @@ const SearchResultsTable = () => {
       <tbody>
         {searchResults?.items?.map((repoItem: GithubRepositoryItem) => (
           <TableRow key={repoItem.id}>
-            <TableCell>{repoItem.name}</TableCell>
-            <TableCell>{repoItem.owner.login}</TableCell>
-            <TableCell>{repoItem.stargazers_count}</TableCell>
-            <TableCell>
+            <TableCell showPlaceholder={isFetching}>{repoItem.name}</TableCell>
+            <TableCell showPlaceholder={isFetching}>
+              {repoItem.owner.login}
+            </TableCell>
+            <TableCell showPlaceholder={isFetching}>
+              {repoItem.stargazers_count}
+            </TableCell>
+            <TableCell showPlaceholder={isFetching}>
               {new Date(repoItem.created_at).toLocaleDateString()}
             </TableCell>
           </TableRow>

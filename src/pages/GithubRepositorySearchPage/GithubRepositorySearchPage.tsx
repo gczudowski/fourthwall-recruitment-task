@@ -8,15 +8,23 @@ import {
 import useGitubRepositorySearch from './hooks/useGithubRepositorySearch'
 
 const SearchPage = () => {
-  const { query, setSearchQuery, page, setPage, maxPages } =
-    useGitubRepositorySearch()
+  const {
+    query,
+    isLoading,
+    isError,
+    searchResults,
+    setSearchQuery,
+    page,
+    setPage,
+    maxPages,
+  } = useGitubRepositorySearch()
 
   return (
     <PageWrapper>
       <SearchInputWrapper>
         <Input onInputChange={setSearchQuery} />
       </SearchInputWrapper>
-      {query ? (
+      {query && !isLoading && !isError && searchResults?.items?.length ? (
         <>
           <SearchResultsTable />
           <TablePaginaton page={page} setPage={setPage} maxPages={maxPages} />

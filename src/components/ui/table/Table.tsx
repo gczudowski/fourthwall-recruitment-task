@@ -4,28 +4,35 @@ import {
   StyledTableHeader,
   StyledTableRow,
   StyledTableHead,
+  StyledTableRowPlaceholder,
 } from './Table.styled'
 
-interface Props {
-  children: React.ReactNode
-}
-
-export const Table = ({ children }: Props) => {
+export const Table = ({ children }: { children: React.ReactNode }) => {
   return <StyledTable>{children}</StyledTable>
 }
 
-export const TableRow = ({ children }: Props) => {
+export const TableRow = ({ children }: { children: React.ReactNode }) => {
   return <StyledTableRow>{children}</StyledTableRow>
 }
 
-export const TableHeader = ({ children }: Props) => {
+export const TableHeader = ({ children }: { children: React.ReactNode }) => {
   return <StyledTableHeader>{children}</StyledTableHeader>
 }
 
-export const TableHead = ({ children }: Props) => {
+export const TableHead = ({ children }: { children: React.ReactNode }) => {
   return <StyledTableHead>{children}</StyledTableHead>
 }
 
-export const TableCell = ({ children }: Props) => {
-  return <StyledTableCell>{children}</StyledTableCell>
+export const TableCell = ({
+  children,
+  showPlaceholder,
+}: {
+  children: React.ReactNode
+  showPlaceholder?: boolean
+}) => {
+  return (
+    <StyledTableCell>
+      {showPlaceholder ? <StyledTableRowPlaceholder /> : children}
+    </StyledTableCell>
+  )
 }

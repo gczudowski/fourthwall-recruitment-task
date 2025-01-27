@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 export const PageWrapper = styled.div`
   display: flex;
-  gap: 24px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 24px;
   padding: 24px 16px;
 `
 
