@@ -37,6 +37,7 @@ function useGitubRepositorySearch() {
     ) => {
       setSearchParams(nextInit, navigateOpts)
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
 
