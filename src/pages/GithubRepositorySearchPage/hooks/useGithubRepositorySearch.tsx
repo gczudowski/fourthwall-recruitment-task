@@ -1,12 +1,8 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect } from 'react'
 import { GithubRepositorySearchResponse } from '../../../types/githubRepository.type'
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
-import {
-  NavigateOptions,
-  URLSearchParamsInit,
-  useSearchParams,
-} from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 const PER_PAGE = 20
 
@@ -29,21 +25,6 @@ function useGitubRepositorySearch() {
   const [searchParams, setSearchParams] = useSearchParams()
   const queryFromUrl = searchParams.get('query') || ''
 
-  const setSearchParamsCallback = useCallback(
-    (
-      nextInit?:
-        | URLSearchParamsInit
-        | ((prev: URLSearchParams) => URLSearchParamsInit),
-      navigateOpts?: NavigateOptions
-    ) => {
-      setSearchParams(nextInit, navigateOpts)
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  const searchParamsValue = useMemo(() => searchParams, [searchParams])
-
   const setSearchQuery = useCallback(
     (query: string) => {
       setQuery(query)
@@ -60,12 +41,12 @@ function useGitubRepositorySearch() {
   const onPageChange = useCallback(
     (newPageValue: number) => {
       setPage(newPageValue)
-      setSearchParamsCallback({
+      setSearchParams({
         query: queryFromUrl,
         page: String(newPageValue),
       })
     },
-    [queryFromUrl, setSearchParamsCallback, setPage]
+    [queryFromUrl, setSearchParams, setPage]
   )
 
   const {
@@ -86,16 +67,10 @@ function useGitubRepositorySearch() {
     }
   }, [searchResults, setMaxPages])
 
-  // useEffect(() => {
-  // setQuery(searchParams.get('query') || '')
-  // setPage(parseInt(searchParams.get('page') || '1'))
-  // }, [])
-
   useEffect(() => {
-    console.log('#debug hook useEffect onSearchParamsChange')
-    setQuery(searchParamsValue.get('query') || '')
-    setPage(parseInt(searchParamsValue.get('page') || '1'))
-  }, [setQuery, setPage, searchParamsValue])
+    setQuery(searchParams.get('query') || '')
+    setPage(parseInt(searchParams.get('page') || '1'))
+  }, [setQuery, setPage, searchParams])
 
   return {
     query,
