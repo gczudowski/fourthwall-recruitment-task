@@ -1,11 +1,14 @@
+import { useSearchParams } from 'react-router-dom'
 import TablePaginaton from '../../components/common/TablePaginaton/TablePagination'
-import Input from '../../components/ui/input/Input'
 import SearchResultsTable from './components/GithubRepositorySearchResultsTable'
 import {
   PageWrapper,
   SearchInputWrapper,
 } from './GithubRepositorySearchPage.styled'
 import useGitubRepositorySearch from './hooks/useGithubRepositorySearch'
+import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import Input from '../../components/ui/input/Input'
 
 const SearchPage = () => {
   const {
@@ -13,21 +16,41 @@ const SearchPage = () => {
     isLoading,
     isError,
     searchResults,
-    setSearchQuery,
+    onSearchSubmit,
+    onPageChange,
     page,
-    setPage,
     maxPages,
   } = useGitubRepositorySearch()
+  const [searchParams] = useSearchParams()
+  const queryFromUrl = searchParams.get('query') || ''
+
+  const { register, setValue, handleSubmit } = useForm<{
+    query: string
+  }>({
+    defaultValues: {
+      query: '',
+    },
+  })
+
+  useEffect(() => {
+    setValue('query', queryFromUrl)
+  }, [queryFromUrl, setValue])
 
   return (
     <PageWrapper>
       <SearchInputWrapper>
-        <Input onInputChange={setSearchQuery} />
+        <form onSubmit={handleSubmit(onSearchSubmit)}>
+          <Input {...register('query')} />
+        </form>
       </SearchInputWrapper>
       {query && !isLoading && !isError && searchResults?.items?.length ? (
         <>
           <SearchResultsTable />
-          <TablePaginaton page={page} setPage={setPage} maxPages={maxPages} />
+          <TablePaginaton
+            page={page}
+            maxPages={maxPages}
+            onPageChange={onPageChange}
+          />
         </>
       ) : null}
     </PageWrapper>

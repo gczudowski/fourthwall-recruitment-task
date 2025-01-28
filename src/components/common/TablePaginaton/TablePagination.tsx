@@ -4,21 +4,21 @@ import { CurrentPage, PaginationWrapper } from './TablePagination.styled'
 interface Props {
   page: number
   maxPages: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
+  onPageChange: (newPageValue: number) => void
 }
 
-const TablePaginaton = ({ page, setPage, maxPages }: Props) => {
+const TablePaginaton = ({ page, maxPages, onPageChange }: Props) => {
   return (
     <PaginationWrapper>
       <Button
         text="Prev"
-        onClick={() => setPage((prev: number) => prev - 1)}
+        onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
       />
       <CurrentPage>Page: {page}</CurrentPage>
       <Button
         text="Next"
-        onClick={() => setPage((prev: number) => prev + 1)}
+        onClick={() => onPageChange(page + 1)}
         disabled={page === maxPages}
       />
     </PaginationWrapper>
