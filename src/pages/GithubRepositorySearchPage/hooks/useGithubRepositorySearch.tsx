@@ -2,6 +2,11 @@ import { useCallback, useEffect } from 'react'
 import { GithubRepositorySearchResponse } from '../../../types/githubRepository.type'
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
+import {
+  NavigateOptions,
+  URLSearchParamsInit,
+  useSearchParams,
+} from 'react-router-dom'
 
 const PER_PAGE = 20
 
@@ -21,13 +26,28 @@ const fetchRepositories = async (
 function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const setSearchParamsCallback = useCallback(
+    (
+      nextInit?:
+        | URLSearchParamsInit
+        | ((prev: URLSearchParams) => URLSearchParamsInit),
+      navigateOpts?: NavigateOptions
+    ) => {
+      setSearchParams(nextInit, navigateOpts)
+    },
+    []
+  )
 
   const setSearchQuery = useCallback(
     (query: string) => {
       setQuery(query)
       setPage(1)
+
+      setSearchParamsCallback({ query }, { relative: 'path' })
     },
-    [setQuery, setPage]
+    [setQuery, setPage, setSearchParamsCallback]
   )
 
   const {
@@ -47,6 +67,11 @@ function useGitubRepositorySearch() {
       setMaxPages(Math.ceil(searchResults?.total_count / 20))
     }
   }, [searchResults, setMaxPages])
+
+  useEffect(() => {
+    setQuery(searchParams.get('query') || '')
+    setPage(parseInt(searchParams.get('page') || '1'))
+  }, [setQuery, setPage, searchParams])
 
   return {
     query,

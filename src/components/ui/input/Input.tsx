@@ -1,18 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { StyledInput } from './Input.styled'
 
 interface Props {
-  onInputChange: (query: string) => void
+  onInputChange?: (query: string) => void
+  initialValue?: string
 }
 
-const Input = ({ onInputChange }: Props) => {
-  const [inputValue, setInputValue] = useState('')
+const Input = ({ onInputChange, initialValue }: Props) => {
+  const [inputValue, setInputValue] = useState(initialValue || '')
   const debounceTimeout = useRef<number | undefined>()
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value
-    setInputValue(inputValue)
-  }
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = event.target.value
+      setInputValue(inputValue)
+    },
+    [setInputValue]
+  )
 
   useEffect(() => {
     if (!onInputChange) return
@@ -22,7 +26,7 @@ const Input = ({ onInputChange }: Props) => {
     }, 500)
 
     return () => clearTimeout(debounceTimeout.current)
-  }, [onInputChange, inputValue])
+  }, [inputValue, onInputChange])
 
   return (
     <StyledInput type="text" value={inputValue} onChange={handleInputChange} />

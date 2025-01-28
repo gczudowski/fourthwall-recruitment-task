@@ -22,7 +22,7 @@ const SearchPage = () => {
   return (
     <PageWrapper>
       <SearchInputWrapper>
-        <Input onInputChange={setSearchQuery} />
+        <Input onInputChange={setSearchQuery} initialValue={query} />
       </SearchInputWrapper>
       {query && !isLoading && !isError && searchResults?.items?.length ? (
         <>
