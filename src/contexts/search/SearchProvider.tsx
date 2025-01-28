@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { SearchContext } from './SearchContext'
 import { useSearchParams } from 'react-router-dom'
-// import { useSearchParams } from 'react-router-dom'
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

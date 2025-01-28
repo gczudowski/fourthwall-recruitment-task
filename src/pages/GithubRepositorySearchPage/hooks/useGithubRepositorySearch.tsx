@@ -3,8 +3,8 @@ import { GithubRepositorySearchResponse } from '../../../types/githubRepository.
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
 import {
-  NavigateOptions,
-  URLSearchParamsInit,
+  // NavigateOptions,
+  // URLSearchParamsInit,
   useSearchParams,
 } from 'react-router-dom'
 
@@ -26,29 +26,29 @@ const fetchRepositories = async (
 function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
-  const setSearchParamsCallback = useCallback(
-    (
-      nextInit?:
-        | URLSearchParamsInit
-        | ((prev: URLSearchParams) => URLSearchParamsInit),
-      navigateOpts?: NavigateOptions
-    ) => {
-      setSearchParams(nextInit, navigateOpts)
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  // const setSearchParamsCallback = useCallback(
+  //   (
+  //     nextInit?:
+  //       | URLSearchParamsInit
+  //       | ((prev: URLSearchParams) => URLSearchParamsInit),
+  //     navigateOpts?: NavigateOptions
+  //   ) => {
+  //     setSearchParams(nextInit, navigateOpts)
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   []
+  // )
 
   const setSearchQuery = useCallback(
     (query: string) => {
       setQuery(query)
       setPage(1)
 
-      setSearchParamsCallback({ query }, { relative: 'path' })
+      // setSearchParamsCallback({ query })
     },
-    [setQuery, setPage, setSearchParamsCallback]
+    [setQuery, setPage]
   )
 
   const {
@@ -71,7 +71,7 @@ function useGitubRepositorySearch() {
 
   useEffect(() => {
     setQuery(searchParams.get('query') || '')
-    setPage(parseInt(searchParams.get('page') || '1'))
+    // setPage(parseInt(searchParams.get('page') || '1'))
   }, [setQuery, setPage, searchParams])
 
   return {
