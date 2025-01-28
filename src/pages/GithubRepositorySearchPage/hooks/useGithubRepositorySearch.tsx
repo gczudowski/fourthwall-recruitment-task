@@ -1,10 +1,10 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { GithubRepositorySearchResponse } from '../../../types/githubRepository.type'
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
 import {
-  // NavigateOptions,
-  // URLSearchParamsInit,
+  NavigateOptions,
+  URLSearchParamsInit,
   useSearchParams,
 } from 'react-router-dom'
 
@@ -26,27 +26,16 @@ const fetchRepositories = async (
 function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  // const setSearchParamsCallback = useCallback(
-  //   (
-  //     nextInit?:
-  //       | URLSearchParamsInit
-  //       | ((prev: URLSearchParams) => URLSearchParamsInit),
-  //     navigateOpts?: NavigateOptions
-  //   ) => {
-  //     setSearchParams(nextInit, navigateOpts)
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // )
+  // console.log('#debug searchParams value', searchParams)
+
+  const searchParamsValue = useMemo(() => searchParams, [searchParams])
 
   const setSearchQuery = useCallback(
     (query: string) => {
       setQuery(query)
       setPage(1)
-
-      // setSearchParamsCallback({ query })
     },
     [setQuery, setPage]
   )
@@ -69,10 +58,16 @@ function useGitubRepositorySearch() {
     }
   }, [searchResults, setMaxPages])
 
+  // useEffect(() => {
+  // setQuery(searchParams.get('query') || '')
+  // setPage(parseInt(searchParams.get('page') || '1'))
+  // }, [])
+
   useEffect(() => {
-    setQuery(searchParams.get('query') || '')
-    // setPage(parseInt(searchParams.get('page') || '1'))
-  }, [setQuery, setPage, searchParams])
+    console.log('#debug hook useEffect onSearchParamsChange')
+    setQuery(searchParamsValue.get('query') || '')
+    setPage(parseInt(searchParamsValue.get('page') || '1'))
+  }, [setQuery, setPage, searchParamsValue])
 
   return {
     query,
