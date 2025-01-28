@@ -27,8 +27,20 @@ function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
   const [searchParams, setSearchParams] = useSearchParams()
+  const queryFromUrl = searchParams.get('query') || ''
 
-  // console.log('#debug searchParams value', searchParams)
+  const setSearchParamsCallback = useCallback(
+    (
+      nextInit?:
+        | URLSearchParamsInit
+        | ((prev: URLSearchParams) => URLSearchParamsInit),
+      navigateOpts?: NavigateOptions
+    ) => {
+      setSearchParams(nextInit, navigateOpts)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
 
   const searchParamsValue = useMemo(() => searchParams, [searchParams])
 
@@ -38,6 +50,22 @@ function useGitubRepositorySearch() {
       setPage(1)
     },
     [setQuery, setPage]
+  )
+
+  const onSearchSubmit = async (data: { query: string }) => {
+    setSearchQuery(data.query)
+    setSearchParams({ query: data.query, page: '1' })
+  }
+
+  const onPageChange = useCallback(
+    (newPageValue: number) => {
+      setPage(newPageValue)
+      setSearchParamsCallback({
+        query: queryFromUrl,
+        page: String(newPageValue),
+      })
+    },
+    [queryFromUrl, setSearchParamsCallback, setPage]
   )
 
   const {
@@ -79,6 +107,8 @@ function useGitubRepositorySearch() {
     isLoading,
     isFetching,
     isError,
+    onSearchSubmit,
+    onPageChange,
   }
 }
 
