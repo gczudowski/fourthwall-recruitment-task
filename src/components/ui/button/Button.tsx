@@ -9,11 +9,9 @@ interface Props {
 
 const Button = ({ text, onClick, disabled, type = 'button' }: Props) => {
   return (
-    <>
-      <StyledButton type={type} onClick={onClick} disabled={disabled}>
-        {text}
-      </StyledButton>
-    </>
+    <StyledButton type={type} onClick={onClick} disabled={disabled}>
+      {text}
+    </StyledButton>
   )
 }
 
