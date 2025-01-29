@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import TablePaginaton from '../../../../components/common/TablePaginaton/TablePagination'
 import {
   Table,
@@ -23,6 +24,10 @@ const SearchResultsTable = () => {
   } = useGitubRepositorySearch()
   const isNoResults = query && !isFetching && searchResults?.items?.length === 0
 
+  const onRowClick = useCallback((url: string) => {
+    window.open(url, '_blank')
+  }, [])
+
   return (
     <>
       {query && !isNoResults && !isError ? (
@@ -40,7 +45,10 @@ const SearchResultsTable = () => {
               {!isFetching
                 ? searchResults?.items?.map(
                     (repoItem: GithubRepositoryItem) => (
-                      <TableRow key={repoItem.id}>
+                      <TableRow
+                        key={repoItem.id}
+                        onClick={() => onRowClick(repoItem.html_url)}
+                      >
                         <TableCell showPlaceholder={isFetching}>
                           {repoItem.name}
                         </TableCell>

@@ -12,7 +12,7 @@ const GithubRepositorySearchForm = () => {
   const [searchParams] = useSearchParams()
   const queryFromUrl = searchParams.get('query') || ''
 
-  const { register, setValue, handleSubmit } = useForm<{
+  const { register, setValue, handleSubmit, setFocus } = useForm<{
     query: string
   }>({
     defaultValues: {
@@ -24,13 +24,17 @@ const GithubRepositorySearchForm = () => {
     setValue('query', queryFromUrl)
   }, [queryFromUrl, setValue])
 
+  useEffect(() => {
+    setFocus('query')
+  }, [setFocus])
+
   return (
     <form onSubmit={handleSubmit(onSearchSubmit)}>
       <SearchFormWrapper>
-        <Label text="Search by name" htmlFor="queryInput" />
+        <Label text="Search by repository name" htmlFor="queryInput" />
         <Input
           id="queryInput"
-          placeholder="Enter repository name..."
+          placeholder="Type something here"
           {...register('query')}
         />
         <Button type="submit" text="Search" />
