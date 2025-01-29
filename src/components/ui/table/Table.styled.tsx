@@ -33,6 +33,10 @@ export const StyledTableHead = styled.thead`
   font-weight: bold;
 `
 
+export const StyledTableBody = styled.tbody`
+  width: 100%;
+`
+
 export const StyledTableHeader = styled.th`
   padding: 10px 0;
 `

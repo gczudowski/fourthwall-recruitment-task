@@ -61,7 +61,7 @@ src/
 # Future improvements
 
 1. implement CI/CD to enable prod deploy via a pipeline
-1. dark mode/theming
+1. dark mode/theming e.g. colors, font sizes
 1. multi-language support
 1. implement e2e tests, e.g. in playwright
 1. preload next page to improve user experience

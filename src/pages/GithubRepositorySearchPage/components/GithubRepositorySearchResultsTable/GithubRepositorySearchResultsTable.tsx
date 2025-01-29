@@ -5,6 +5,7 @@ import {
   TableRow,
   TableHeader,
   TableHead,
+  TableBody,
 } from '../../../../components/ui/table/Table'
 import { PER_PAGE } from '../../../../config/repositorySearchConfig'
 import { GithubRepositoryItem } from '../../../../types/githubRepository.type'
@@ -35,7 +36,7 @@ const SearchResultsTable = () => {
                 <TableHeader>Created At</TableHeader>
               </TableRow>
             </TableHead>
-            <tbody>
+            <TableBody>
               {!isFetching
                 ? searchResults?.items?.map(
                     (repoItem: GithubRepositoryItem) => (
@@ -63,7 +64,7 @@ const SearchResultsTable = () => {
                       <TableCell showPlaceholder={isFetching}></TableCell>
                     </TableRow>
                   ))}
-            </tbody>
+            </TableBody>
           </Table>
           <TablePaginaton
             page={page}
