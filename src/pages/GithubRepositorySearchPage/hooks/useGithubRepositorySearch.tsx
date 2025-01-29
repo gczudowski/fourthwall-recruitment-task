@@ -3,8 +3,7 @@ import { GithubRepositorySearchResponse } from '../../../types/githubRepository.
 import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
-
-const PER_PAGE = 20
+import { PER_PAGE } from '../../../config/repositorySearchConfig'
 
 const fetchRepositories = async (
   query: string,

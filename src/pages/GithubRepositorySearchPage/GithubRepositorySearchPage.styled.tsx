@@ -8,7 +8,3 @@ export const PageWrapper = styled.div`
   gap: 24px;
   padding: 24px 16px;
 `
-
-export const SearchInputWrapper = styled.div`
-  width: 400px;
-`

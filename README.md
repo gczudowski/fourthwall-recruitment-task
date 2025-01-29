@@ -56,7 +56,7 @@ src/
 1. Implemented React Context as a global state solution to avoid props drilling
 1. Implemented Styled Components to handle styles.
 1. Implemented Table component with placeholders to gracefully handle pagination.
-1.
+1. Used React Hook Form to handle forms management
 
 # Future improvements
 

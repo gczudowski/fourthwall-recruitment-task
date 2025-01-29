@@ -27,7 +27,7 @@ export const TableCell = ({
   children,
   showPlaceholder,
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   showPlaceholder?: boolean
 }) => {
   return (
