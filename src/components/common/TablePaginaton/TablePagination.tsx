@@ -9,7 +9,7 @@ interface Props {
 
 const TablePaginaton = ({ page, maxPages, onPageChange }: Props) => {
   return (
-    <PaginationWrapper>
+    <PaginationWrapper aria-label="Page navigation">
       <Button
         text="Prev"
         onClick={() => onPageChange(page - 1)}

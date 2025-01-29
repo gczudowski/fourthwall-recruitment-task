@@ -5,6 +5,7 @@ import useGitubRepositorySearch from '../../hooks/useGithubRepositorySearch'
 import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'react-router-dom'
 import { SearchFormWrapper } from './GithubRepositorySearchForm.styled'
+import Label from '../../../../components/ui/label/Label'
 
 const GithubRepositorySearchForm = () => {
   const { onSearchSubmit } = useGitubRepositorySearch()
@@ -26,7 +27,12 @@ const GithubRepositorySearchForm = () => {
   return (
     <form onSubmit={handleSubmit(onSearchSubmit)}>
       <SearchFormWrapper>
-        <Input {...register('query')} />
+        <Label text="Search by name" htmlFor="queryInput" />
+        <Input
+          id="queryInput"
+          placeholder="Enter repository name..."
+          {...register('query')}
+        />
         <Button type="submit" text="Search" />
       </SearchFormWrapper>
     </form>
