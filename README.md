@@ -37,6 +37,7 @@ src/
 ├── components/ <- reusable components
     ├── common <- common, more complex components used in several pages
     ├── ui <- simple UI components
+├── configs/ <- single source of truth for any configurations
 ├── hooks/ <- reusable hooks used in many pages
 ├── pages/
     ├── pageX

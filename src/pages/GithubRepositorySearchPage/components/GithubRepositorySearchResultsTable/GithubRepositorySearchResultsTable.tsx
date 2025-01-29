@@ -17,6 +17,7 @@ const SearchResultsTable = () => {
     searchResults,
     isFetching,
     isError,
+    error,
     query,
     page,
     maxPages,
@@ -82,7 +83,7 @@ const SearchResultsTable = () => {
         </>
       ) : null}
 
-      {isError ? <div>Error</div> : null}
+      {isError ? <div>{error?.message}</div> : null}
 
       {isNoResults ? (
         <div>Sorry, there are no results for your query</div>

@@ -13,7 +13,7 @@ const fetchRepositories = async (
     `https://api.github.com/search/repositories?q=${query}&page=${page}&per_page=${PER_PAGE}`
   )
   if (!response.ok) {
-    throw new Error('Failed to fetch repositories')
+    throw new Error(`Failed to fetch repositories. Please try again later`)
   }
   return response.json()
 }
@@ -53,6 +53,7 @@ function useGitubRepositorySearch() {
     isLoading,
     isFetching,
     isError,
+    error,
   } = useQuery({
     queryKey: ['repositories', query, page],
     queryFn: () => fetchRepositories(query, page),
@@ -81,6 +82,7 @@ function useGitubRepositorySearch() {
     isLoading,
     isFetching,
     isError,
+    error,
     onSearchSubmit,
     onPageChange,
   }
