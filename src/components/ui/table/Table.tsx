@@ -12,8 +12,14 @@ export const Table = ({ children }: { children: React.ReactNode }) => {
   return <StyledTable>{children}</StyledTable>
 }
 
-export const TableRow = ({ children }: { children: React.ReactNode }) => {
-  return <StyledTableRow>{children}</StyledTableRow>
+export const TableRow = ({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode
+  onClick?: () => void
+}) => {
+  return <StyledTableRow onClick={onClick}>{children}</StyledTableRow>
 }
 
 export const TableHeader = ({ children }: { children: React.ReactNode }) => {

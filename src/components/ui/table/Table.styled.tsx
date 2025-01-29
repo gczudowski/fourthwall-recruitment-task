@@ -5,11 +5,11 @@ export const StyledTable = styled.table`
   table-layout: fixed;
 `
 
-export const StyledTableRow = styled.tr`
+export const StyledTableRow = styled.tr<{ onClick?: () => void }>`
   border-bottom: 1px solid silver;
   &:hover {
     background-color: #f4f6f8;
-  }
+  ${({ onClick }) => (onClick ? 'cursor: pointer;' : 'cursor: default;')}
 `
 
 const shimmer = keyframes`

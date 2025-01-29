@@ -10,7 +10,7 @@ export type GithubRepositoryItem = {
   owner: {
     login: string
   }
-  url: string
+  html_url: string
   created_at: string
   stargazers_count: number
 }

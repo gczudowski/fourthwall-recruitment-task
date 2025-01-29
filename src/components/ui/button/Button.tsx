@@ -4,12 +4,12 @@ interface Props {
   onClick?: () => void
   text: string
   disabled?: boolean
-  type?: string
+  type?: 'button' | 'submit' | 'reset'
 }
 
-const Button = ({ text, onClick, disabled }: Props) => {
+const Button = ({ text, onClick, disabled, type = 'button' }: Props) => {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <StyledButton type={type} onClick={onClick} disabled={disabled}>
       {text}
     </StyledButton>
   )
