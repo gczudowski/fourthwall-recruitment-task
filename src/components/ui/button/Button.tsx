@@ -4,6 +4,7 @@ interface Props {
   onClick?: () => void
   text: string
   disabled?: boolean
+  type?: string
 }
 
 const Button = ({ text, onClick, disabled }: Props) => {

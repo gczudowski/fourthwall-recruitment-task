@@ -56,12 +56,12 @@ src/
 1. Implemented React Context as a global state solution to avoid props drilling
 1. Implemented Styled Components to handle styles.
 1. Implemented Table component with placeholders to gracefully handle pagination.
-1.
+1. Used React Hook Form to handle forms management
 
 # Future improvements
 
 1. implement CI/CD to enable prod deploy via a pipeline
-1. dark mode/theming
+1. dark mode/theming e.g. colors, font sizes
 1. multi-language support
 1. implement e2e tests, e.g. in playwright
 1. preload next page to improve user experience

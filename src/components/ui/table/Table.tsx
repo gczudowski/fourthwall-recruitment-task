@@ -5,6 +5,7 @@ import {
   StyledTableRow,
   StyledTableHead,
   StyledTableRowPlaceholder,
+  StyledTableBody,
 } from './Table.styled'
 
 export const Table = ({ children }: { children: React.ReactNode }) => {
@@ -23,11 +24,15 @@ export const TableHead = ({ children }: { children: React.ReactNode }) => {
   return <StyledTableHead>{children}</StyledTableHead>
 }
 
+export const TableBody = ({ children }: { children: React.ReactNode }) => {
+  return <StyledTableBody>{children}</StyledTableBody>
+}
+
 export const TableCell = ({
   children,
   showPlaceholder,
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   showPlaceholder?: boolean
 }) => {
   return (
