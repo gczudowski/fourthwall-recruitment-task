@@ -11,3 +11,5 @@ afterEach(async () => {
 })
 
 afterAll(() => server.close())
+
+window.open = vi.fn()

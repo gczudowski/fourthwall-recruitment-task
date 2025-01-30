@@ -7,8 +7,6 @@ export const handlers = [
     const page = parseInt(url.searchParams.get('page') || '1', 10)
     const perPage = parseInt(url.searchParams.get('per_page') || '20', 10)
 
-    console.log(`Mock API Call: q=${query}, page=${page}, per_page=${perPage}`)
-
     return HttpResponse.json({
       items: Array.from({ length: perPage }, (_, index) => {
         const id = index + 1 + (page - 1) * perPage
