@@ -4,5 +4,5 @@ export const SearchFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
+  margin: 0 16px;
 `

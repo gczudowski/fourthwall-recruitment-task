@@ -17,6 +17,11 @@ export const media = {
       ${styles}
     }
   `,
+  tabletAndDesktop: (styles: TemplateStringsArray) => css`
+    @media (min-width: ${breakpoints.tablet}) {
+      ${styles}
+    }
+  `,
   desktop: (styles: TemplateStringsArray) => css`
     @media (min-width: ${breakpoints.desktop}) {
       ${styles}
