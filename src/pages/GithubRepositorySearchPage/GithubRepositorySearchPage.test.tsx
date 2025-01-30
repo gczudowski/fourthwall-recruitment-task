@@ -141,8 +141,6 @@ describe('github repository search page', () => {
     })
 
     it('can use the form to visit a github repo', async () => {
-      const openMock = vi.spyOn(window, 'open')
-
       renderWithProviders(<GithubRepositorySearchPage />)
 
       await userEvent.type(
@@ -158,12 +156,10 @@ describe('github repository search page', () => {
 
       await userEvent.click(rows[0] as HTMLTableCellElement)
 
-      expect(openMock).toHaveBeenCalledWith(
+      expect(window.open).toHaveBeenCalledWith(
         'https://github.com/test-repo-1',
         '_blank'
       )
-
-      openMock.mockRestore()
     })
   })
 })
