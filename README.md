@@ -1,10 +1,9 @@
-# Prod version
+# Hosted version
 
-You can preview the app without any configuration at the following link -> https://gczudowski-github-repo-search.vercel.app
+You can preview the app without any configuration by following the link below
+https://gczudowski-github-repo-search.vercel.app
 
 # Setup instructions
-
-If you want to play around, follow the configuration steps below.
 
 ## Project configuration
 
