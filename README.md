@@ -59,6 +59,8 @@ src/
 1. Implemented Styled Components to handle styles.
 1. Implemented Table component with placeholders to gracefully handle pagination.
 1. Used React Hook Form to handle forms management
+1. Added running unit tests to pre-commit hook (since we don't have a pipeline at the moment, that's the least we can do)
+1. Decided to start writing tests starting with page-level features checks to make sure the app works as intended for the user
 
 # Future improvements
 
@@ -72,6 +74,7 @@ src/
 1. communicating errors could be handled using toasts and have better responsive UI
 1. when an api error occurs, we could add a button to retry the same query manually
 1. if we cared about google positioning, it would be a good idea to implement SSR, like Next.js
+1. perhaps write more cases in react testing library to cover other cases (e.g. api error, disabled prev/next buttons when reached the limit)
 
 # Limitations
 
