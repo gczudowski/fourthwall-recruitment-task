@@ -70,7 +70,7 @@ src/
 
 # Future improvements
 
-1. implement CI/CD to enable prod deploy via a pipeline
+1. implement CI/CD to enable prod deploy via a pipeline and running tests before merging a pull request to prevent production bugs
 1. dark mode/theming e.g. colors, font sizes
 1. multi-language support
 1. implement e2e tests, e.g. in playwright
@@ -81,6 +81,7 @@ src/
 1. when an api error occurs, we could add a button to retry the same query manually
 1. if we cared about google positioning, it would be a good idea to implement SSR, like Next.js
 1. perhaps write more cases in react testing library to cover other cases (e.g. api error, disabled prev/next buttons when reached the limit)
+1. change favicon
 1. better "not found" page :)
 
 # Limitations
