@@ -9,7 +9,7 @@ export const StyledTable = styled.table`
 export const StyledTableRow = styled.tr<{ onClick?: () => void }>`
   border-bottom: 1px solid silver;
   &:nth-child(even) {
-    background-color: #fcfcfd; /* Light gray for every second row */
+    background-color: #fcfcfd;
   }
   &:hover {
     background-color: #f4f6f8;
