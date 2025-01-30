@@ -1,4 +1,10 @@
+# Prod version
+
+You can preview the app without any configuration at the following link -> https://gczudowski-github-repo-search.vercel.app
+
 # Setup instructions
+
+If you want to play around, follow the configuration steps below.
 
 ## Project configuration
 
@@ -75,6 +81,7 @@ src/
 1. when an api error occurs, we could add a button to retry the same query manually
 1. if we cared about google positioning, it would be a good idea to implement SSR, like Next.js
 1. perhaps write more cases in react testing library to cover other cases (e.g. api error, disabled prev/next buttons when reached the limit)
+1. better "not found" page :)
 
 # Limitations
 
