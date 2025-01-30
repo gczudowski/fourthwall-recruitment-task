@@ -39,7 +39,7 @@ export const StyledTableHead = styled.thead`
   display: none;
 
   ${media.tabletAndDesktop`
-    display: contents;
+    display: table-header-group;
   `}
 `
 
