@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { media } from '../../../config/media'
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -7,8 +8,12 @@ export const StyledTable = styled.table`
 
 export const StyledTableRow = styled.tr<{ onClick?: () => void }>`
   border-bottom: 1px solid silver;
+  &:nth-child(even) {
+    background-color: #fcfcfd;
+  }
   &:hover {
     background-color: #f4f6f8;
+  }
   ${({ onClick }) => (onClick ? 'cursor: pointer;' : 'cursor: default;')}
 `
 
@@ -31,6 +36,11 @@ export const StyledTableRowPlaceholder = styled.div`
 export const StyledTableHead = styled.thead`
   text-align: left;
   font-weight: bold;
+  display: none;
+
+  ${media.tabletAndDesktop`
+    display: table-header-group;
+  `}
 `
 
 export const StyledTableBody = styled.tbody`
@@ -38,12 +48,30 @@ export const StyledTableBody = styled.tbody`
 `
 
 export const StyledTableHeader = styled.th`
-  padding: 10px 0;
+  padding: 10px 16px;
 `
 
 export const StyledTableCell = styled.td`
-  padding: 10px 0;
+  display: flex;
+  padding: 10px 16px;
+  margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  &::before {
+    content: attr(data-label);
+    font-weight: bold;
+    padding-right: 15px;
+  }
+
+  ${media.tabletAndDesktop`
+    display: table-cell;
+    margin: 0 16px;
+
+    &::before {
+      content: none;
+      padding-right: 0;
+    }
+  `}
 `

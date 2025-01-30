@@ -7,7 +7,7 @@ export const PageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 24px 16px;
+  padding: 24px 0;
   width: initial;
 
   ${media.desktop`
@@ -18,7 +18,7 @@ export const PageWrapper = styled.div`
 
 export const PageTitle = styled.h1`
   text-align: center;
-  padding: 0 0 30px;
+  padding: 0 16px 30px;
   font-size: 24px;
 `
 

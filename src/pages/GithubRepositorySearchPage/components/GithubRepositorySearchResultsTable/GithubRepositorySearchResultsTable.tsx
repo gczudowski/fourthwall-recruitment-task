@@ -50,16 +50,19 @@ const SearchResultsTable = () => {
                         key={repoItem.id}
                         onClick={() => onRowClick(repoItem.html_url)}
                       >
-                        <TableCell showPlaceholder={isFetching}>
+                        <TableCell showPlaceholder={isFetching} label="Name">
                           {repoItem.name}
                         </TableCell>
-                        <TableCell showPlaceholder={isFetching}>
+                        <TableCell showPlaceholder={isFetching} label="Owner">
                           {repoItem.owner.login}
                         </TableCell>
-                        <TableCell showPlaceholder={isFetching}>
+                        <TableCell showPlaceholder={isFetching} label="Stars">
                           {repoItem.stargazers_count}
                         </TableCell>
-                        <TableCell showPlaceholder={isFetching}>
+                        <TableCell
+                          showPlaceholder={isFetching}
+                          label="Created At"
+                        >
                           {new Date(repoItem.created_at).toLocaleDateString()}
                         </TableCell>
                       </TableRow>

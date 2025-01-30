@@ -37,12 +37,14 @@ export const TableBody = ({ children }: { children: React.ReactNode }) => {
 export const TableCell = ({
   children,
   showPlaceholder,
+  label,
 }: {
   children?: React.ReactNode
   showPlaceholder?: boolean
+  label?: string
 }) => {
   return (
-    <StyledTableCell>
+    <StyledTableCell data-label={label}>
       {showPlaceholder ? <StyledTableRowPlaceholder /> : children}
     </StyledTableCell>
   )
