@@ -6,6 +6,7 @@
    Suggested node version v22.11.0. If you have `nvm` installed, just use `nvm install`
 1. Install packages
    `npm install`
+1. Set proper api url. copy `.env.example` to `.env` e.g. by executing `cp .env.example .env` and set proper url value. for the purpose of this project, the value should be `https://api.github.com`
 
 ## Run locally
 
@@ -43,7 +44,7 @@ src/
     ├── pageX
         ├── components <- components used only in this page
         ├── hooks <- hooks used only in this page
-├── context/ <- global state (could be store in case we move to Redux later)
+├── contexts/ <- global state (could be store in case we move to Redux later)
 ├── utils/
 ├── types/
 ```
@@ -68,7 +69,7 @@ src/
 1. preload next page to improve user experience
 1. handle scroll position when going back in history (currently the scroll positon tends to jump up and down in some cases)
 1. improve table placeholders in mobile view
-1. communicating errors could be handled using toasts
+1. communicating errors could be handled using toasts and have better responsive UI
 1. when an api error occurs, we could add a button to retry the same query manually
 1. if we cared about google positioning, it would be a good idea to implement SSR, like Next.js
 

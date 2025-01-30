@@ -4,25 +4,15 @@ import { useSearchContext } from '../../../contexts/search/useSearchContext'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
 import { PER_PAGE } from '../../../config/repositorySearchConfig'
-
-const fetchRepositories = async (
-  query: string,
-  page: number
-): Promise<GithubRepositorySearchResponse> => {
-  const response = await fetch(
-    `https://api.github.com/search/repositories?q=${query}&page=${page}&per_page=${PER_PAGE}`
-  )
-  if (!response.ok) {
-    throw new Error(`Failed to fetch repositories. Please try again later`)
-  }
-  return response.json()
-}
+import { ENDPOINTS } from '../../../config/apiConfig'
+import { useFetcher } from '../../../hooks/useFetcher'
 
 function useGitubRepositorySearch() {
   const { query, setQuery, page, setPage, maxPages, setMaxPages } =
     useSearchContext()
   const [searchParams, setSearchParams] = useSearchParams()
   const queryFromUrl = searchParams.get('query') || ''
+  const { fetcher } = useFetcher()
 
   const setSearchQuery = useCallback(
     (query: string) => {
@@ -56,7 +46,16 @@ function useGitubRepositorySearch() {
     error,
   } = useQuery({
     queryKey: ['repositories', query, page],
-    queryFn: () => fetchRepositories(query, page),
+    queryFn: () =>
+      fetcher<GithubRepositorySearchResponse>({
+        endpoint: ENDPOINTS.GITHUB_REPOS_SEARCH,
+        method: 'GET',
+        queryParams: {
+          q: query,
+          page,
+          per_page: PER_PAGE,
+        },
+      }),
     enabled: !!query,
     placeholderData: (prev) => prev,
   })
