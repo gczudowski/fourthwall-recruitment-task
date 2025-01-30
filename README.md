@@ -60,6 +60,7 @@ src/
 1. Implemented Table component with placeholders to gracefully handle pagination.
 1. Used React Hook Form to handle forms management
 1. Added running unit tests to pre-commit hook (since we don't have a pipeline at the moment, that's the least we can do)
+1. Decided to start writing tests starting with page-level features checks to make sure the app works as intended for the user
 
 # Future improvements
 
