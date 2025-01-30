@@ -66,6 +66,11 @@ src/
 1. multi-language support
 1. implement e2e tests, e.g. in playwright
 1. preload next page to improve user experience
+1. handle scroll position when going back in history (currently the scroll positon tends to jump up and down in some cases)
+1. improve table placeholders in mobile view
+1. communicating errors could be handled using toasts
+1. when an api error occurs, we could add a button to retry the same query manually
+1. if we cared about google positioning, it would be a good idea to implement SSR, like Next.js
 
 # Limitations
 
